@@ -1,0 +1,15 @@
+package objects;
+
+public class CheckeredPlane extends Plane implements PlaneColorer{
+	
+	Vector3 color1, color2;
+	
+	public CheckeredPlane(Vector3 point, Vector3 u, Vector3 v) {
+		super(point, u, v, Vector3.ZERO);
+		setColor(this);
+	}
+
+	@Override
+	public Vector3 getColor(Vector2 UVPoint) {
+	}
+}

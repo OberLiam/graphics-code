@@ -1,0 +1,9 @@
+package objects;
+
+public class Conglomerate {
+	public IIntersector[] intersectors;
+	
+	public Conglomerate(Vector3 origin, IIntersector... intersectors) {
+		this.intersectors = intersectors;
+	}
+}

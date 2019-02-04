@@ -1,0 +1,18 @@
+package main;
+
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+
+public class ImageJFrame extends JFrame{
+	public ImageJFrame(BufferedImage bimg) {
+		ImageIcon icon = new ImageIcon(bimg);
+		JLabel jlabel = new JLabel(icon);
+		jlabel.setPreferredSize(new Dimension(bimg.getWidth(), bimg.getHeight())); // may be unnecessary
+		this.add(new JLabel(icon));
+	}
+	
+}

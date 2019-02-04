@@ -1,0 +1,26 @@
+package objects;
+
+public class TexImageSquare implements IIntersector, IPlaneColorer{
+	public ImgTexture tex;
+	
+	// this method first projects outside onto the plane, and then continues.
+	boolean isInside(Vector3 outside) {
+		Vector2 projection = plane.toUV(outside);
+		return (projection.x>=0 && projection.y>=0 && projection.x<=1 && projection.y<=1);
+	}
+
+	@Override
+	public Intersection getIntersection(Ray incoming) {
+		Intersection inter = plane.getIntersection(incoming);
+		// checks to see if it's in the parallelogram (SUPER INEFFICIENT)
+		if(inter != null && isInside(inter.position))
+			return inter;
+		else
+			return null;
+	}
+	
+	@Override
+	public Vector3 getColor(Vector2 UVPoint) {
+		return tex.getPixel(UVPoint);
+	}
+}

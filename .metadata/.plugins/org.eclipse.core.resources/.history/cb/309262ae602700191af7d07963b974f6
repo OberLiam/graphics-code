@@ -1,0 +1,5 @@
+package objects;
+
+public interface PlaneColorListener { // I don't know how I feel about this whole concept
+	public Vector3 getColor(Vector2 UVPoint);
+}

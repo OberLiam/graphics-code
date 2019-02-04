@@ -1,0 +1,8 @@
+package objects;
+
+/**
+ * @author Liam
+ * This is used specifically for getting a delayed color from an IIntersector object.
+ */
+public interface IColerer {
+}

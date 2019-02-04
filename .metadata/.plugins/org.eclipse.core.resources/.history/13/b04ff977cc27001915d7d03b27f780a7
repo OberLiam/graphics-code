@@ -1,0 +1,16 @@
+package objects;
+
+public class TexImagePlane extends Plane implements IPlaneColorer{
+	ImgTexture texture;
+	
+	public TexImagePlane(Vector3 point, Vector3 u, Vector3 v, ImgTexture texture) {
+		super(point, u, v, Vector3.ZERO);
+		this.texture = texture;
+		setColor(this);
+	}
+	
+	@Override
+	public Vector3 getColor(Vector2 UVPoint) {
+		return texture.getPixel(UVPoint);
+	}
+}

@@ -1,0 +1,37 @@
+package objects;
+
+public class Sphere implements IIntersect{
+	Vector3 center;
+	double radius;
+	
+	public Sphere(Vector3 center, double radius) {
+		this.center = center;
+		this.radius = radius;
+	}
+	public Sphere(double x, double y, double z, double radius) {
+		this(new Vector3(x, y, z), radius);
+	}
+	
+	@Override
+	//solves the problem: (x_0+d*dir)**2 = radius**2
+	// which becomes: d**2 + a1 d + a2 = 0
+	// using the quadratic formula (pain!) /**MAY BE SOMETHING WRONG WITH THIS, from the images*/
+	public Intersection getIntersection(Ray incoming) {
+		Vector3 diff = Vector3.sub(incoming.start, center);
+		double a1 = 2*Vector3.dot(diff, incoming.dir);
+		double a2 = diff.length2() - radius*radius;
+		double discriminant = a1*a1 - 4*a2;
+		if(discriminant < 0)
+			return null;
+		
+		double d1 = (-a1 - Math.sqrt(discriminant)) / 2; // the sqrts in this function
+		double d2 = (-a1 + Math.sqrt(discriminant)) / 2; // are really killing me!
+		
+		if(d2 >= Intersection.BUFFER && d1 < Intersection.BUFFER) // the intersection is @d2
+			return Intersection.make(d2, incoming, Vector3.sub(incoming.extrapolate(d2),center).normalized());
+		else if(d1 >= Intersection.BUFFER) // the intersection is @d1
+			return Intersection.make(d1, incoming, Vector3.sub(incoming.extrapolate(d1),center).normalized());
+		else
+			return null;
+	}
+}

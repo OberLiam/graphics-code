@@ -1,0 +1,14 @@
+package objects;
+
+public class Conglomerate implements IIntersector{
+	public IIntersector[] intersectors;
+	
+	public Conglomerate(Vector3 origin, IIntersector... intersectors) {
+		this.intersectors = intersectors;
+	}
+
+	@Override
+	public Intersection getIntersection(Ray incoming) {
+		return null;
+	}
+}

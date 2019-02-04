@@ -1,0 +1,75 @@
+package objects;
+
+public class Vector3 {
+	// The ALL-MIGHTY unit vectors:
+	public static final Vector3 X = new Vector3(1, 0, 0);
+	public static final Vector3 Y = new Vector3(0, 1, 0);
+	public static final Vector3 Z = new Vector3(0, 0, 1);
+	public static final Vector3 ZERO = new Vector3(0, 0, 0);
+	
+	public static final Vector3 BLACK = new Vector3(0.0, 0.0, 0.0);
+	public static final Vector3 WHITE = new Vector3(1.0, 1.0, 1.0);
+	public static final Vector3 RED = new Vector3(1.0, 0.0, 0.0);
+	public static final Vector3 GREEN = new Vector3(0.0, 1.0, 0.0);
+	public static final Vector3 BLUE = new Vector3(0.0, 0.0, 1.0);
+	
+	
+	
+	public final double x, y, z;
+	public Vector3(double x, double y, double z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
+	
+	public Vector3 normalized() {
+		return scaled(1/length());
+	}
+	
+	public double length2() {
+		return x*x + y*y + z*z;
+	}
+	
+	public double length() {
+		return Math.sqrt(length2());
+	}
+	
+	public static Vector3 add(Vector3 a, Vector3 b) {
+		return new Vector3(a.x + b.x, a.y + b.y, a.z + b.z);
+	}
+	public static Vector3 sub(Vector3 a, Vector3 b) {
+		return new Vector3(a.x - b.x, a.y - b.y, a.z - b.z);
+	}
+	public Vector3 scaled(double factor) {
+		return new Vector3(x*factor, y*factor, z*factor);
+	}
+	
+	public static double dot(Vector3 a, Vector3 b) {
+		return a.x*b.x + a.y*b.y + a.z*b.z;
+	}
+	// I REALLY want to have "pseudo-vector" be its own class... as well as "pseudo-double" I guess.
+	public static Vector3 cross(Vector3 a, Vector3 b) {
+		return new Vector3(a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);
+	}
+	
+	// reflects "a" across the current vector
+	// assumes the current vector is normalized
+	public Vector3 reflected(Vector3 a) {
+		return Vector3.sub(a, this.scaled(2*Vector3.dot(a, this)));
+	}
+	
+	public static Vector3 weightSum(Vector3 v1, Vector3 v2, double scale) { // scale for v1
+		return add(v1.scaled(scale), v2.scaled(1-scale));
+	}
+	public static Vector3 addAll(Vector3... vs) { // could be efficient-ized
+		Vector3 ret = ZERO;
+		for(Vector3 v : vs)
+			ret = Vector3.add(ret, v);
+		return ret;
+	}
+	
+	@Override
+	public String toString() {
+		return "["+x+", "+y+", "+z+"]";
+	}
+}

@@ -1,0 +1,8 @@
+package objects;
+
+public class Texture {
+	public BufferedImage bimg;
+	public Texture(String imgfile) {
+		bimg = ImageIO.read(imgfile);
+	}
+}

@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+/**
+ * @author Liam
+ *
+ */
+module HelloOpenGLTake2 {
+	requires jogl.all;
+	requires jogl.all.natives.windows.amd64;
+	requires gluegen.rt;
+}

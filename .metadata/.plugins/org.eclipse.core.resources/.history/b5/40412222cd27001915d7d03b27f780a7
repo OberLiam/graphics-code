@@ -1,0 +1,10 @@
+package objects;
+
+public class TexImageSquare implements IIntersector, IPlaneColorer{
+	public ImgTexture tex;
+	
+	@Override
+	public Vector3 getColor(Vector2 UVPoint) {
+		return tex.getPixel(UVPoint);
+	}
+}

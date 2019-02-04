@@ -1,0 +1,16 @@
+package objects;
+
+public class SquareColorTex implements IPlaneTexture
+{
+	@Override
+	public boolean getInPlane(Vector2 UVPoint) {
+		return UVPoint.x>=0 || UVPoint.x<=1 && UVPoint.y>=0 && UVPoint.y<=1;
+	}
+
+	@Override
+	public Vector3 getColor(Vector2 UVPoint) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

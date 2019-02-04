@@ -1,0 +1,31 @@
+package objects;
+
+public class TextureSquare implements IIntersector, IPlaneColorer{
+
+	public Vector3 p1, u, v;
+	public Plane plane;
+	public Texture tex;
+	
+	public TextureSquare(Vector3 p1, Vector3 u, Vector3 v, Texture tex) {
+		this.p1 = p1;
+		this.u = u;
+		this.v = v;
+		plane = new Plane(p1, u, v, colorVec);
+	}
+	
+	// this method first projects outside onto the plane, and then continues.
+	boolean isInside(Vector3 outside) {
+		Vector2 projection = plane.toUV(outside);
+		return (projection.x>=0 && projection.y>=0 && projection.x<=1 && projection.y<=1);
+	}
+
+	@Override
+	public Intersection getIntersection(Ray incoming) {
+		Intersection inter = plane.getIntersection(incoming);
+		// checks to see if it's in the parallelogram (SUPER INEFFICIENT)
+		if(inter != null && isInside(inter.position))
+			return inter;
+		else
+			return null;
+	}
+}

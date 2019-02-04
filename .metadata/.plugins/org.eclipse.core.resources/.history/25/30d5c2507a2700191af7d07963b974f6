@@ -1,0 +1,22 @@
+package objects;
+
+public class Conglomerate implements IIntersector{
+	public IIntersector[] intersectors;
+	public Vector3 origin;
+	
+	public Conglomerate(Vector3 origin, IIntersector... intersectors) {
+		this.origin = origin;
+		this.intersectors = intersectors;
+	}
+
+	@Override
+	public Intersection getIntersection(Ray incoming) {
+		Ray modelIncoming = new Ray(Vector3.sub(incoming.start, origin), incoming.dir);
+		Intersection bestInter = null;
+		for(IIntersector intsec : intersectors) {
+			Intersection newInter = intsec.getIntersection(modelIncoming);
+			if(newInter.distance < bestInter.distance)
+				bestInter = newInter;
+		}
+	}
+}

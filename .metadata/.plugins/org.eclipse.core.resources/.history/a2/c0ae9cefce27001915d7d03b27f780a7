@@ -1,0 +1,18 @@
+package objects;
+
+public class TexImage implements IPlaneTexture{
+	ImgTexture texture;
+	
+	public TexImagePlane(ImgTexture texture) {
+		this.texture = texture;
+	}
+	
+	@Override
+	public Vector3 getColor(Vector2 UVPoint) {
+		return texture.getPixel(UVPoint);
+	}
+	@Override
+	public boolean getInPlane(Vector2 UVPoint) {
+		return true;
+	}
+}

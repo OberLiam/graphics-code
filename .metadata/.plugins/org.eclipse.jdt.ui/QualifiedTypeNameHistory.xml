@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javafx.scene.control.Button"/>
+<fullyQualifiedTypeName name="javafx.scene.layout.StackPane"/>
+<fullyQualifiedTypeName name="javafx.scene.Scene"/>
+<fullyQualifiedTypeName name="javafx.event.EventHandler"/>
+<fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="objects.Intersection"/>
+<fullyQualifiedTypeName name="objects.RealThing"/>
+<fullyQualifiedTypeName name="objects.Triangle"/>
+<fullyQualifiedTypeName name="objects.Ray"/>
+<fullyQualifiedTypeName name="java.awt.Frame"/>
+<fullyQualifiedTypeName name="com.jogamp.opengl.GLProfile"/>
+<fullyQualifiedTypeName name="com.jogamp.opengl.GLCapabilities"/>
+<fullyQualifiedTypeName name="com.jogamp.opengl.awt.GLCanvas"/>
+<fullyQualifiedTypeName name="com.jogamp.opengl.GL4"/>
+<fullyQualifiedTypeName name="objects.Sphere"/>
+<fullyQualifiedTypeName name="com.jogamp.opengl.GLDrawableFactory"/>
+<fullyQualifiedTypeName name="com.jogamp.opengl.GLEventListener"/>
+<fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
+<fullyQualifiedTypeName name="javax.swing.JLabel"/>
+<fullyQualifiedTypeName name="java.awt.Dimension"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="objects.SmoothTriangle"/>
+<fullyQualifiedTypeName name="objects.Plane"/>
+<fullyQualifiedTypeName name="objects.PlaneColorer"/>
+<fullyQualifiedTypeName name="objects.GradedPlane"/>
+<fullyQualifiedTypeName name="objects.CheckeredPlane"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
+<fullyQualifiedTypeName name="objects.TextureSquare"/>
+<fullyQualifiedTypeName name="objects.Texture"/>
+<fullyQualifiedTypeName name="objects.Vector3"/>
+<fullyQualifiedTypeName name="objects.IIntersector"/>
+<fullyQualifiedTypeName name="objects.Parallelogram"/>
+<fullyQualifiedTypeName name="objects.Conglomerate"/>
+<fullyQualifiedTypeName name="objects.Light"/>
+<fullyQualifiedTypeName name="objects.IPlaneColorer"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+</qualifiedTypeNameHistroy>

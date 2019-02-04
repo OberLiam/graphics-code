@@ -1,0 +1,14 @@
+package objects;
+
+public class Light {
+	public Vector3 position;
+	public double intensity;
+	
+	public Light(Vector3 position) {
+		this.position = position;
+	}
+	
+	public Light(Vector3 position, Vector3 intensity) { // how do lights work?
+		this.position = position;
+	}
+}

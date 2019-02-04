@@ -1,0 +1,11 @@
+package objects;
+
+public interface IShape {
+	public static IShape PLANE = new IShape() {
+		public boolean getInPlane(Vector2 point) {
+			return true;
+		}
+	}
+	
+	public boolean getInPlane(Vector2 point);
+}

@@ -1,0 +1,41 @@
+package objects;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+public class Texture {
+	public BufferedImage bimg;
+	public int width, height;
+	public Texture(String imgfile) {
+		try {
+			File file = new File(imgfile);
+			bimg = ImageIO.read(file);
+			width = bimg.getWidth();
+			height = bimg.getHeight();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Vector3 getPixel(Vector2 coord) { // VERY inefficient, as is called for EVERY point.?
+		int x = (int)(mod(coord.x, 1)*width);
+		int y = (int)(mod(coord.y, 1)*height);
+		System.out.println(x+" :: "+y);
+		return toColorVector(bimg.getRGB(x, y));
+	}
+	
+	public static double mod(double x, double modulus) {
+		if(x>0) return x%modulus;
+		else return -((-x)%modulus);
+	}
+	
+	public static Vector3 toColorVector(int color) {
+		int red = (color&0x00ff0000)>>>16;
+		int green = (color&0x0000ff00)>>>8;
+		int blue = (color&0x000000ff)>>>0;
+		return new Vector3(red/256.0,green/256.0,blue/256.0);
+	}
+}

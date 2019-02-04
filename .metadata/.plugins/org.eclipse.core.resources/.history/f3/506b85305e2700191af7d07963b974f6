@@ -1,0 +1,32 @@
+package objects;
+
+/**
+ * This class is for intersections, and stores the information that the main program needs
+ * to decide what to do next. Returned by getIntersection()
+ * 
+ * If any of the fields are null, that's fine.
+ */
+public class Intersection {
+	public static final double BUFFER = 0.01; // this is the minimum distance away something needs to be to be seen
+	
+	public double distance;
+	public Vector3 position;
+	public Vector3 direction; //normalized
+	
+	public Intersection(double distance) {
+		this.distance = distance;
+	}
+	public Intersection(double distance, Vector3 position, Vector3 direction) {
+		this.distance = distance;
+		this.position = position;
+		this.direction = direction;
+	}
+	
+	public static Intersection make(double distance, Ray ray, Vector3 normal) {
+		return new Intersection(distance, ray.extrapolate(distance), normal.reflected(ray.dir));
+	}
+	
+	public Ray toRay() {
+		return new Ray(position, direction);
+	}
+}

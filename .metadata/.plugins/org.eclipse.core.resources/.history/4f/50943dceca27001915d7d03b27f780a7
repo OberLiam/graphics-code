@@ -1,0 +1,7 @@
+package objects;
+
+public interface IPlaneTexture
+{
+	public boolean getInPlane(Vector2 UVPoint);
+	public Vector3 getColor(Vector2 UVPoint);
+}

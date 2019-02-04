@@ -1,0 +1,7 @@
+package objects;
+
+public class Conglomerate {
+	public Conglomerate(Vector3 origin, IIntersector... intersections) {
+		
+	}
+}

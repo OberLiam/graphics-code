@@ -1,0 +1,61 @@
+package objects;
+
+/**
+ * I guess this would be nice if you wanted to manipulate (u,v) coordinates on a plane
+ */
+
+public class Vector2 {
+	// the ALL-MIGHTY unit vectors:
+	public static final Vector2 X = new Vector2(1, 0);
+	public static final Vector2 Y = new Vector2(0, 1);
+	public static final Vector2 ZERO = new Vector2(0, 0);
+	
+	public final double x, y;
+	public Vector2(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public Vector2 normalized() {
+		return scaled(1/length());
+	}
+	
+	public double length2() {
+		return x*x + y*y;
+	}
+	
+	public double length() {
+		return Math.sqrt(length2());
+	}
+	
+	public static Vector2 add(Vector2 a, Vector2 b) {
+		return new Vector2(a.x + b.x, a.y + b.y);
+	}
+	public static Vector2 sub(Vector2 a, Vector2 b) {
+		return new Vector2(a.x - b.x, a.y - b.y);
+	}
+	public Vector2 scaled(double factor) {
+		return new Vector2(x*factor, y*factor);
+	}
+	
+	public static double dot(Vector2 a, Vector2 b) {
+		return a.x*b.x + a.y*b.y;
+	}
+	// I REALLY want to have "pseudo-vector" be its own class... as well as "pseudo-double" I guess.
+	public static double cross(Vector2 a, Vector2 b) {
+		return a.x*b.y-a.y*b.x;
+	}
+	// this rotates the vector counterclockwise by 90 degrees
+	public Vector2 orthoed() {
+		return new Vector2(-y, x);
+	}
+	
+	public Vector2 weightedSum(Vector2 v1, Vector2 v2, double scale) {
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "["+x+", "+y+"]";
+	}
+}

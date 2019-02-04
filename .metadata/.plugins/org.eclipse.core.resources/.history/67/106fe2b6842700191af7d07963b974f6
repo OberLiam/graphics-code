@@ -1,0 +1,12 @@
+package objects;
+
+import java.io.File;
+
+public class XMLInterpreter {
+	
+	public RealThing[] interpret(String url) {
+		File file = new File(url);
+		Scanner sc = new Scanner(file);
+	}
+	
+}

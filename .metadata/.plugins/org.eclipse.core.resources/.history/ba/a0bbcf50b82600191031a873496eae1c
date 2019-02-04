@@ -1,0 +1,13 @@
+package objects;
+
+/**
+ * @author Liam
+ * This is the class for a real object that can intersect a ray of light. It returns how far along
+ * the intersection occurred.
+ */
+public interface IIntersect {
+	// Returns the closest intersection to an object. If no intersection occurs, returns null.
+	public Intersection getIntersection(Ray incoming);
+	
+	public boolean active;
+}

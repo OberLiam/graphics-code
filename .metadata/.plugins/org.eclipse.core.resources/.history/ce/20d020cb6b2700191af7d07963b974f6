@@ -1,0 +1,14 @@
+package objects;
+
+public class GradedPlane extends Plane implements PlaneColorer{
+	public GradedPlane(Vector3 point, Vector3 u, Vector3 v, Vector3 color) {
+		super(point, u, v, Vector3.ZERO);
+		setColor(this); // difficult?
+	}
+
+	@Override
+	public Vector3 getColor(Vector2 UVPoint) {
+		
+	}
+	
+}

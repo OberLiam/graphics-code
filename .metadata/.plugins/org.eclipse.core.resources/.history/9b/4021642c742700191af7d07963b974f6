@@ -1,0 +1,12 @@
+package objects;
+
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
+
+public class Texture {
+	public BufferedImage bimg;
+	public Texture(String imgfile) {
+		bimg = ImageIO.read(imgfile);
+	}
+}

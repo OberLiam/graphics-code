@@ -1,0 +1,9 @@
+package objects;
+
+public class Conglomerate {
+	public Intersector[] intersectors;
+	
+	public Conglomerate(Vector3 origin, IIntersector... intersectors) {
+		
+	}
+}

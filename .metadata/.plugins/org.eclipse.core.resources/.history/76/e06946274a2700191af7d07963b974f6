@@ -1,0 +1,18 @@
+package main;
+
+import java.awt.image.BufferedImage;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+
+public class ImageFrame extends JFrame{
+	public ImageFrame(BufferedImage bimg) {
+		ImageIcon icon = new ImageIcon(bimg);
+		this.add(new JLabel(icon));
+		
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setSize(bimg.getWidth(), bimg.getHeight());
+	}
+	
+}

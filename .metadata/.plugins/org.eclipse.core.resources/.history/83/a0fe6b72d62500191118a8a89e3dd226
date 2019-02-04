@@ -1,0 +1,11 @@
+/**
+ * 
+ */
+/**
+ * @author Liam
+ *
+ */
+module HelloOpenGLTake2 {
+	import jaxax.swing;
+	exports main;
+}

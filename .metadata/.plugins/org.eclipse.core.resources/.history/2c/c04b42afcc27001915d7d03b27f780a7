@@ -1,0 +1,22 @@
+package objects;
+
+import java.awt.image.BufferedImage;
+
+public class TexImagePlane implements IPlaneTexture {
+	public BufferedImage bimg;
+	
+	public TexImagePlane(BufferedImage bimg) {
+		this.bimg = bimg;
+	}
+	
+	@Override
+	public boolean getInPlane(Vector2 UVPoint) {
+		return true;
+	}
+
+	@Override
+	public Vector3 getColor(Vector2 UVPoint) {
+		
+	}
+	
+}

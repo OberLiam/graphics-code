@@ -1,0 +1,5 @@
+package objects;
+
+public class Light {
+	public Vector3 position;
+}

@@ -1,0 +1,13 @@
+package objects;
+
+public class TexSmoothTriangle implements IPlaneTexture{
+	@Override
+	public boolean getInPlane(Vector2 UVPoint) {
+		return false;
+	}
+	@Override
+	public Vector3 getColor(Vector2 UVPoint) {
+		return null;
+	}
+
+}

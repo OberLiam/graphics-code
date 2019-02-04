@@ -1,0 +1,101 @@
+package main;
+
+import objects.RealThing;
+import objects.Vector3;
+import objects.Intersection;
+import objects.Light;
+import objects.Ray;
+
+/**
+ * 
+ * @author Liam
+ *
+ * This is ---mostly--semi---pseudocode--- actually good code right now
+ * The conversion of color integers to color vectors is still bugging me, though.
+ * TODO: test
+ */
+public class Cosmos {
+	// world things
+	public RealThing[] realThings;
+	public Light[] lights;
+	private final double fogEffect = 0.01;
+	private final double fogFunction(double dist) { //returns between 0 and 1
+		return 1/(1+fogEffect*dist);
+	}
+	public final Vector3 bgColor = new Vector3(0.0, 0.0, 0.0); // including fog color // maybe separate in future
+	public final boolean applyLights = true;
+	public final double lightFunction(double dist) { // modifies the intensity of a light
+		return 1/(dist*dist);
+	}
+	public final double ambientIntensity = 0.1;
+	
+	// what "specific" gets passed along is determined by the overarching program.
+	// which in turn decides based on orthogonal/perspective projection
+	public Vector3 getColorVector(Ray specific, int numInducts) {
+		RealThing bestRT = null;
+		Intersection bestInter = null;
+		for(RealThing rt : realThings) {
+			if(rt==null || rt.active == false)
+				continue;
+			Intersection inter = rt.intersector.getIntersection(specific);
+			if(inter != null && inter.distance>=Intersection.BUFFER){ //inter.distance<BUFFER should be impossible, but just to be sure
+
+				if(bestInter== null || inter.distance < bestInter.distance) { 
+					bestInter = inter;
+					bestRT = rt;
+				}
+			}
+		}
+		if(bestInter==null)
+			return bgColor;
+		Vector3 hitColor = bestInter.getColor(); // only called at the very end.
+		if(applyLights) {
+			double intensity = ambientIntensity; // starts @ ambientIntensity
+			for(Light light : lights) {
+				double plusIntensity = light.luminosity;
+				double transparency = getNetTransparency(bestInter.position, light.position);
+				plusIntensity *= transparency;
+				Vector3 displacement = Vector3.sub(light.position, bestInter.position);
+				intensity += light.luminosity * transparency * lightFunction(Vector3.sub(bestInter.position, light.position).length());
+			}
+			// TODO: figure out how lights actually work
+			if(intensity > 1)
+				intensity = 1;
+//			hitColor = hitColor.scaled(intensity);
+			hitColor = Vector3.weightSum(hitColor, bgColor, intensity);
+		}
+		
+		if(bestRT.reflective && numInducts>0) {
+			Vector3 reflColor = getColorVector(bestInter.toRay(), numInducts-1);
+			hitColor =  Vector3.weightSum(reflColor, hitColor, bestRT.reflectivity);
+		}
+		if(bestRT.transparent && numInducts>0) {
+			Vector3 thruColor = getColorVector(new Ray(bestInter.position, specific.dir), numInducts-1);
+			hitColor = Vector3.weightSum(thruColor, hitColor, bestRT.transparency);
+		}
+		return Vector3.weightSum(hitColor, bgColor, 1/(1+fogEffect*bestInter.distance));
+	}
+	
+	// remember - doesn't take into account multiple hits in a single RealThing
+	// separate for readability
+	private double getNetTransparency(Vector3 origin, Vector3 dest) {
+		double transparency = 1.0;
+		double targetDist = Vector3.sub(dest, origin).length();
+		Ray ray = new Ray(origin, Vector3.sub(dest, origin).normalized());
+		for(RealThing rt : realThings) {
+			Intersection hit = rt.intersector.getIntersection(ray);
+			if(hit==null)
+				continue;
+			if(hit.distance < Intersection.BUFFER)
+				continue;
+			if(hit.distance > targetDist)
+				continue;
+			// now we know that we've hit "rt".
+			if(!rt.transparent)
+				return 0.0;
+			else
+				transparency *= rt.transparency;
+		}
+		return transparency;
+	}
+}

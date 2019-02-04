@@ -1,0 +1,10 @@
+package objects;
+
+public class XMLInterpreter {
+	
+	public RealThing[] interpret(String url) {
+		File file = new File(url);
+		file.
+	}
+	
+}

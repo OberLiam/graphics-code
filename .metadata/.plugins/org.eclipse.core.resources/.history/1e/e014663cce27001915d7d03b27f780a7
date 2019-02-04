@@ -1,0 +1,8 @@
+package objects;
+
+/**
+ * Used in any fancy "plane-type" objects
+ */
+public interface IPlaneTexture {
+	public Vector3 getColor(Vector2 UVPoint);
+}

@@ -1,0 +1,19 @@
+package objects;
+
+public class TexColor implements IPlaneTexture
+{
+	public Vector3 color;
+	public TexColorSquare(Vector3 color) {
+		this.color = color;
+	}
+	
+	@Override
+	public boolean getInPlane(Vector2 UVPoint) {
+		return UVPoint.x>=0 || UVPoint.x<=1 && UVPoint.y>=0 && UVPoint.y<=1;
+	}
+	@Override
+	public Vector3 getColor(Vector2 UVPoint) {
+		return color;
+	}
+	
+}
